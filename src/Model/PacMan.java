@@ -3,7 +3,6 @@ package Model;
 import util.Pos;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Represents a PacMan object
@@ -15,9 +14,9 @@ public class PacMan {
     private final ImageIcon image;
 
     // Initializes Pacman object
-    public PacMan(Pos pos, Image image) {
+    public PacMan(Pos pos) {
         this.pos = pos;
-        this.image = new ImageIcon("PacMan.jpg");
+        this.image = new ImageIcon("PacMan.png");
     }
 
     public Pos getPos() {
