@@ -1,4 +1,5 @@
-package Model;
+/*
+package To_Add;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,3 +28,4 @@ public class GhostsManager implements Iterable<Ghost>{
         return ghostMap.values().iterator();
     }
 }
+*/

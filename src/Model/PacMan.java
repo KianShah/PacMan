@@ -1,29 +1,33 @@
 package Model;
 
+import util.Pos;
+
+import javax.swing.*;
+import java.awt.*;
+
+/**
+ * Represents a PacMan object
+ */
 public class PacMan {
-    private final int speed = 4;
 
-    private int x;
-    private int y;
+    private int speed = 4;
+    private Pos pos;
+    private final ImageIcon image;
 
-    public PacMan(int x_pos, int y_pos) {
-        x = x_pos;
-        y = y_pos;
+    // Initializes Pacman object
+    public PacMan(Pos pos, Image image) {
+        this.pos = pos;
+        this.image = new ImageIcon("PacMan.jpg");
     }
 
-    public int getX() {
-        return x;
+    public Pos getPos() {
+        return pos;
     }
-
-    public int getY() {
-        return y;
+    public void setPos(Pos pos) {
+        this.pos = pos;
     }
-
-    public void setX(int x) {
-        this.x = x;
+    public int getSpeed() {
+        return speed;
     }
-
-    public void setY(int y) {
-        this.y = y;
-    }
+    public ImageIcon getImage() {return image;}
 }
