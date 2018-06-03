@@ -1,5 +1,7 @@
 package Model;
 
+import UI.PacManGame;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,7 +10,7 @@ import java.awt.*;
  * Implemented with Singleton design pattern
  */
 public class PacMan {
-    private static Point initialPos = new Point(50,50);
+    private static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
 
     final static ImageIcon PM_EAST = new ImageIcon("PacManEAST.png");
     final static ImageIcon PM_SOUTH = new ImageIcon("PacManSOUTH.png");
@@ -16,7 +18,7 @@ public class PacMan {
     final static ImageIcon PM_NORTH = new ImageIcon("PacManNORTH.png");
 
     private int speed = 4;
-    private static PacMan instance = new PacMan(initialPos, Direction.EAST);
+    private static PacMan instance;
     private Point pos;
     private Direction dir;
     private ImageIcon image;
@@ -30,6 +32,9 @@ public class PacMan {
 
     // returns Singleton instance of PacMan
     public static PacMan getInstance() {
+        if (instance == null)
+            instance = new PacMan(initialPos, Direction.EAST);
+
         return instance;
     }
 

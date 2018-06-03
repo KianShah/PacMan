@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /*
  * A list of directions (N,S,E,W)
- * Each direction has 2 ints that represent the direction's corresponding 2D unit vector
+ * Each direction has 2 ints that represent the direction's corresponding 2D unit vectors
  * and an image of PacMan facing the corresponding direction
  */
 public enum Direction {

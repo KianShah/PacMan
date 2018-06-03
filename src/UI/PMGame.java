@@ -5,11 +5,25 @@ import Model.PacMan;
 
 import static java.awt.event.KeyEvent.*;
 
+/*
+ * Class representing the PacMan game
+ * Implemented with Singleton design pattern
+ */
 public class PMGame {
-    private PacMan pacMan;
 
-    public PMGame() {
+    private PacMan pacMan;
+    private static PMGame instance;
+    private boolean gameOver;
+
+    private PMGame() {
         pacMan = PacMan.getInstance();
+    }
+
+    public static PMGame getGame() {
+        if (instance == null)
+            instance = new PMGame();
+
+        return instance;
     }
 
     public void update() {
@@ -35,5 +49,7 @@ public class PMGame {
                 break;
         }
     }
+
+    public PacMan getPacMan() {return pacMan;}
 
 }
