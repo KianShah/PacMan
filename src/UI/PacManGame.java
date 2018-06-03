@@ -15,10 +15,11 @@ import java.io.IOException;
 public class PacManGame {
     private JFrame frame;
     private PMGame game;
+    private JLabel PM_Label;
 
-    public static final int FRAME_WIDTH = 300;
-    public static final int FRAME_HEIGHT = 500;
-    private final int INTERVAL = 50;
+    public static final int FRAME_WIDTH = 960;
+    public static final int FRAME_HEIGHT = 1080;
+    private final int INTERVAL = 40;
     private boolean gameOver = false;
 
     // Sets up PacMan game
@@ -26,13 +27,12 @@ public class PacManGame {
         game = PMGame.getGame();
         frame = new JFrame("PacMan");
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         centreFrame();
 
         try {frame.setIconImage(ImageIO.read(new File("PacManEAST.png")));}
-        catch (IOException e){/* do nothing */}
+        catch (IOException e){}
 
         frame.addKeyListener(new KeyHandler());
         drawObjects();
@@ -55,28 +55,37 @@ public class PacManGame {
 //        LayoutManager manager = new GridLayout(50,30);
 //        frame.setLayout(manager);
 
-        JLabel PM_Label = new JLabel(PacMan.getInstance().getImage());
-        frame.add(PM_Label);
-        PM_Label.setBounds(game.getPacMan().getPos().x,
-                game.getPacMan().getPos().y,
-                game.getPacMan().getImage().getIconWidth(),
-                game.getPacMan().getImage().getIconHeight());
-
+        addPacMan();
     }
+
+    private void removeObjects() {
+        if (PM_Label != null)
+            frame.remove(PM_Label);
+    }
+
 
     private void addTimer() {
         Timer t = new Timer(INTERVAL, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                removeObjects();
                 if (!gameOver) {
                     game.update();
                 }
-
                 drawObjects();
             }
         });
 
         t.start();
+    }
+
+    private void addPacMan() {
+        PM_Label = new JLabel(PacMan.getInstance().getImage());
+        frame.add(PM_Label);
+        PM_Label.setBounds(game.getPacMan().getPos().x,
+                game.getPacMan().getPos().y,
+                game.getPacMan().getImage().getIconWidth()*2,
+                game.getPacMan().getImage().getIconHeight()*2);
     }
 
     /*
