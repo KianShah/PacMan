@@ -1,7 +1,7 @@
 //package To_Add;
 //
 //import Model.PacMan;
-//import To_Add.Ghost;
+//import Model.Ghost;
 //import To_Add.GhostType;
 //import util.Pos;
 //

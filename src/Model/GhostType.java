@@ -1,5 +1,5 @@
-/*
-package To_Add;
+
+package Model;
 
 import java.awt.*;
 
@@ -19,17 +19,15 @@ public enum GhostType {
         this.name = name;
     }
 
+    // Getter methods
     public Color getColor() {
         return color;
     }
-
     public int getSpeed() {
         return speed;
     }
-
     public String getName() {
         return name;
     }
 
 }
-*/
