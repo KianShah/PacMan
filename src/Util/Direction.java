@@ -1,6 +1,4 @@
-package Model;
-
-import javax.swing.*;
+package Util;
 
 /*
  * A list of directions (N,S,E,W)
@@ -10,19 +8,17 @@ import javax.swing.*;
  */
 public enum Direction {
 
-    NORTH (0,-1, PacMan.PM_NORTH),
-    EAST (1,0, PacMan.PM_EAST),
-    SOUTH (0,1, PacMan.PM_SOUTH),
-    WEST (-1,0, PacMan.PM_WEST);
+    NORTH (0,-1),
+    EAST (1,0),
+    SOUTH (0,1),
+    WEST (-1,0);
 
     private int x_dir;
     private int y_dir;
-    private ImageIcon PMimage;
 
-    Direction(int x_dir, int y_dir, ImageIcon icon) {
+    Direction(int x_dir, int y_dir) {
         this.x_dir = x_dir;
         this.y_dir = y_dir;
-        this.PMimage = icon;
     }
 
     // Getter methods
@@ -30,5 +26,4 @@ public enum Direction {
         return x_dir;
     }
     public int getY_dir() {return y_dir;}
-    public ImageIcon getImage() {return PMimage;}
 }

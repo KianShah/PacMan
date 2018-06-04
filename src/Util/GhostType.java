@@ -1,5 +1,5 @@
 
-package Model;
+package Util;
 
 import java.awt.*;
 

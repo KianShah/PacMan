@@ -1,6 +1,7 @@
 package Model;
 
 import UI.PacManGame;
+import Util.Direction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +13,10 @@ import java.awt.*;
 public class PacMan {
     private static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
 
-    final static ImageIcon PM_EAST = new ImageIcon("PacManEAST.png");
-    final static ImageIcon PM_SOUTH = new ImageIcon("PacManSOUTH.png");
-    final static ImageIcon PM_WEST = new ImageIcon("PacManWEST.png");
-    final static ImageIcon PM_NORTH = new ImageIcon("PacManNORTH.png");
+    private static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
+    private static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");
+    private static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
+    private static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
 
     private int speed = 4;
     private static PacMan instance;
@@ -23,22 +24,22 @@ public class PacMan {
     private Direction dir;
     private ImageIcon image;
 
-    // Initializes Pacman object
-    private PacMan(Point pos, Direction dir) {
-        this.pos = pos;
-        this.dir = dir;
+    // Initializes PacMan object facing East at InitialPos
+    private PacMan() {
+        this.pos = initialPos;
+        this.dir = Direction.EAST;
         this.image = PM_EAST;
     }
 
     // returns Singleton instance of PacMan
     public static PacMan getInstance() {
         if (instance == null)
-            instance = new PacMan(initialPos, Direction.EAST);
+            instance = new PacMan();
 
         return instance;
     }
 
-    // EFFECTS: Moves PacMan position SPEED amount in the currect direction
+    // EFFECTS: Moves PacMan position SPEED amount in the current direction
     // MODIFIES: this
     public void move() {
         pos.x += speed * dir.getX_dir();
@@ -49,7 +50,21 @@ public class PacMan {
     // MODIFIES: this
     public void setDir(Direction dir) {
         this.dir = dir;
-        this.image = dir.getImage();
+        setCorrectImage();
+    }
+
+    // EFFECTS: Sets the PacMan image to face teh current direction
+    private void setCorrectImage() {
+        switch (dir) {
+            case EAST: image = PM_EAST;
+                break;
+            case SOUTH: image = PM_SOUTH;
+                break;
+            case WEST: image = PM_WEST;
+                break;
+            case NORTH: image = PM_NORTH;
+                break;
+        }
     }
 
     public void setPos(Point pos) {
