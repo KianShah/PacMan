@@ -23,7 +23,7 @@ public class PacManGame {
     private final int INTERVAL = 40;
 
     // Sets up PacMan game
-    PacManGame() {
+    private PacManGame() {
         game = PMGame.getGame();
         frame = new JFrame("PacMan");
 
@@ -65,7 +65,7 @@ public class PacManGame {
 
     // Removes PacMan and ghost labels from frame
     private void removeObjects() {
-        // TODO
+        frame.getContentPane().removeAll();
     }
 
 
@@ -74,6 +74,7 @@ public class PacManGame {
         Timer t = new Timer(INTERVAL, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                removeObjects();
                 if (!game.isGameOver()) {
                     game.update();
                 }
@@ -84,23 +85,33 @@ public class PacManGame {
         t.start();  // starts timer, ends when gameoOver = true
     }
 
-    // Add PacMan label
+    // Helper function for drawObjects()
+    // Displays PacMan as a JLabel in the frame
     private void addPacMan() {
         JLabel PM_Label = new JLabel(PacMan.getInstance().getImage());
         frame.getContentPane().add(PM_Label);
-        PM_Label.setBounds(game.getPacMan().getPos().x,
-                game.getPacMan().getPos().y,
-                game.getPacMan().getImage().getIconWidth()*2,
-                game.getPacMan().getImage().getIconHeight()*2);
+        PM_Label.setBounds(PacMan.getInstance().getPos().x,
+                PacMan.getInstance().getPos().y,
+                PacMan.getInstance().getImage().getIconWidth()+15,  // +15 is to remove artifacts that appear
+                PacMan.getInstance().getImage().getIconHeight()+15);
     }
 
+    // Helper function for drawObjects()
+    // Displays all of the ghosts as JLabels in the frame
     private void addGhosts() {
         for (GhostAbstract ghost : game.getGhosts())
             addGhost(ghost);
     }
 
+    // Helper function for addGhosts()
+    // Displays the given ghost as a JLabel in the frame
     private void addGhost(GhostAbstract ghost) {
         JLabel label = new JLabel(ghost.getImage());
+        frame.getContentPane().add(label);
+        label.setBounds(ghost.getPos().x,
+                ghost.getPos().y,
+                ghost.getImage().getIconWidth(),
+                ghost.getImage().getIconHeight());
     }
 
     /*

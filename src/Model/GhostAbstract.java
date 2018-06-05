@@ -34,11 +34,11 @@ public abstract class GhostAbstract {
         return pos;
     }
     public ImageIcon getImage() {return image;}
-    protected int getSpeed() {return speed;}
+    public int getSpeed() {return speed;}
+    public Direction getDir() {return  dir;}
+
 
     // Setter methods
-    public void setPos(Point pos) {
-        this.pos = pos;
-    }
-    public void setDir(Direction dir) {this.dir = dir;}
+    protected void setDir(Direction dir) {this.dir = dir;}
+    protected void setImage(ImageIcon image) {this.image = image;}
 }
