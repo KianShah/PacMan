@@ -18,7 +18,7 @@ public class PacMan {
     private static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
     private static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
 
-    private int speed = 4;
+    private double speed = 3.0;
     private static PacMan instance;
     private Point pos;
     private Direction dir;
@@ -75,7 +75,7 @@ public class PacMan {
     public Point getPos() {
         return pos;
     }
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
     public Direction getDir() {return dir;}

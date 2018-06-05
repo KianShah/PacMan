@@ -4,16 +4,16 @@ package Util;
 import java.awt.*;
 
 public enum GhostType {
-    BLINKY (Color.RED, 2, "Blinky"),
+    BLINKY (Color.RED, 2.5, "Blinky"),
     PINKY (Color.PINK, 3, "Pinky"),
-    INKY (Color.CYAN, 4, "Inky"),
-    CLYDE (Color.ORANGE, 5, "Clyde");
+    INKY (Color.CYAN, 3.5, "Inky"),
+    CLYDE (Color.ORANGE, 4, "Clyde");
 
     private final Color color;
-    private final int speed;
+    private final double speed;
     private final String name;
 
-    GhostType(Color color, int speed, String name) {
+    GhostType(Color color, double speed, String name) {
         this.color = color;
         this.speed = speed;
         this.name = name;
@@ -23,7 +23,7 @@ public enum GhostType {
     public Color getColor() {
         return color;
     }
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
     public String getName() {

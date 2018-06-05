@@ -20,7 +20,7 @@ public class PacManGame {
 
     public static final int FRAME_WIDTH = 960;
     public static final int FRAME_HEIGHT = 1080;
-    private final int INTERVAL = 40;
+    private final int INTERVAL = 20;
 
     // Sets up PacMan game
     private PacManGame() {

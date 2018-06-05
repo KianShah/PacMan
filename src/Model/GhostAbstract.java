@@ -9,7 +9,7 @@ import java.awt.*;
 public abstract class GhostAbstract {
     private GhostType type;
     private ImageIcon image;
-    private int speed;
+    private double speed;
     private Point pos;
     private Direction dir;
 
@@ -34,7 +34,7 @@ public abstract class GhostAbstract {
         return pos;
     }
     public ImageIcon getImage() {return image;}
-    public int getSpeed() {return speed;}
+    public double getSpeed() {return speed;}
     public Direction getDir() {return  dir;}
 
 
