@@ -1,45 +1,37 @@
 package Model.Ghosts;
 
 import Model.GhostAbstract;
-import Util.GhostType;
+import Model.PacMan;
 import Util.Direction;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Clyde extends GhostAbstract {
-    private static final Point initialPos = new Point(50,50);
+    public static final double speed = 5.0;
 
-    private static final ImageIcon CLYDE_EAST = new ImageIcon("Images/Clyde Images/ClydeEAST.png");
-    private static final ImageIcon CLYDE_SOUTH = new ImageIcon("Images/Clyde Images/ClydeSOUTH.png");
-    private static final ImageIcon CLYDE_WEST = new ImageIcon("Images/Clyde Images/ClydeWEST.png");
-    private static final ImageIcon CLYDE_NORTH = new ImageIcon("Images/Clyde Images/ClydeNORTH.png");
+    public static final ImageIcon CLYDE_EAST = new ImageIcon("Images/Clyde Images/ClydeEAST.png");
+    public static final ImageIcon CLYDE_SOUTH = new ImageIcon("Images/Clyde Images/ClydeSOUTH.png");
+    public static final ImageIcon CLYDE_WEST = new ImageIcon("Images/Clyde Images/ClydeWEST.png");
+    public static final ImageIcon CLYDE_NORTH = new ImageIcon("Images/Clyde Images/ClydeNORTH.png");
 
-    public Clyde(GhostType type, Point pos, ImageIcon image, Direction dir) {
-        super(type, pos, image, dir);
+    public final ImageIcon[] images = {CLYDE_EAST, CLYDE_SOUTH, CLYDE_WEST, CLYDE_NORTH};
+
+    public Clyde(int speed, Point pos, ImageIcon image, Direction dir) {
+        super(speed, pos, image, dir);
     }
 
     public Clyde() {
-        super(GhostType.CLYDE, initialPos, CLYDE_EAST, Direction.EAST);
+        super(speed, GhostAbstract.initialPos, CLYDE_EAST, Direction.EAST);
     }
 
     @Override
-    public void setDir(Direction dir) {
-        super.setDir(dir);
-        setCorrectImage();
+    public Point getTargetPos() {
+        return PacMan.getInstance().getPos();
     }
 
-    private void setCorrectImage() {
-        switch (super.getDir()) {
-            case EAST:  super.setImage(CLYDE_EAST);
-                break;
-            case SOUTH:  super.setImage(CLYDE_SOUTH);
-                break;
-            case WEST:  super.setImage(CLYDE_WEST);
-                break;
-            case NORTH:  super.setImage(CLYDE_NORTH);
-                break;
-            default: // do nothing
-        }
+    @Override
+    protected ImageIcon[] getImages() {
+        return images;
     }
 }

@@ -1,45 +1,37 @@
 package Model.Ghosts;
 
 import Model.GhostAbstract;
-import Util.GhostType;
+import Model.PacMan;
 import Util.Direction;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Inky extends GhostAbstract {
-    private static final Point initialPos = new Point(50,50);
+    public static final double speed = 10.0;
 
-    private static final ImageIcon INKY_EAST = new ImageIcon("Images/Inky Images/InkyEAST.png");
-    private static final ImageIcon INKY_SOUTH = new ImageIcon("Images/Inky Images/InkySOUTH.png");
-    private static final ImageIcon INKY_WEST = new ImageIcon("Images/Inky Images/InkyWEST.png");
-    private static final ImageIcon INKY_NORTH = new ImageIcon("Images/Inky Images/InkyNORTH.png");
+    public static final ImageIcon INKY_EAST = new ImageIcon("Images/Inky Images/InkyEAST.png");
+    public static final ImageIcon INKY_SOUTH = new ImageIcon("Images/Inky Images/InkySOUTH.png");
+    public static final ImageIcon INKY_WEST = new ImageIcon("Images/Inky Images/InkyWEST.png");
+    public static final ImageIcon INKY_NORTH = new ImageIcon("Images/Inky Images/InkyNORTH.png");
 
-    public Inky(GhostType type, Point pos, ImageIcon image, Direction dir) {
-        super(type, pos, image, dir);
+    private final ImageIcon[] images = {INKY_EAST, INKY_SOUTH, INKY_WEST, INKY_NORTH};
+
+    public Inky(int speed, Point pos, ImageIcon image, Direction dir) {
+        super(speed, pos, image, dir);
     }
 
     public Inky() {
-        super(GhostType.INKY, initialPos, INKY_EAST, Direction.EAST);
+        super(speed, GhostAbstract.initialPos, INKY_EAST, Direction.EAST);
     }
 
     @Override
-    public void setDir(Direction dir) {
-        super.setDir(dir);
-        setCorrectImage();
+    public Point getTargetPos() {
+        return PacMan.getInstance().getPos();
     }
 
-    private void setCorrectImage() {
-        switch (super.getDir()) {
-            case EAST:  super.setImage(INKY_EAST);
-                break;
-            case SOUTH:  super.setImage(INKY_SOUTH);
-                break;
-            case WEST:  super.setImage(INKY_WEST);
-                break;
-            case NORTH:  super.setImage(INKY_NORTH);
-                break;
-            default: // do nothing
-        }
+    @Override
+    protected ImageIcon[] getImages() {
+        return images;
     }
 }

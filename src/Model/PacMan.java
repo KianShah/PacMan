@@ -11,12 +11,12 @@ import java.awt.*;
  * Implemented with Singleton design pattern
  */
 public class PacMan {
-    private static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
+    public static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
 
-    private static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
-    private static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");
-    private static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
-    private static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
+    public static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
+    public static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");
+    public static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
+    public static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
 
     private double speed = 3.0;
     private static PacMan instance;
@@ -46,26 +46,27 @@ public class PacMan {
         pos.y += speed * dir.getY_dir();
     }
 
-    // EFFECTS: Sets the direction of the PacMan object
+    // EFFECTS: Sets the direction of the PacMan object and sets the image of PacMan to the given direction
     // MODIFIES: this
     public void setDir(Direction dir) {
         this.dir = dir;
-        setCorrectImage();
-    }
 
-    // EFFECTS: Sets the PacMan image to face teh current direction
-    private void setCorrectImage() {
         switch (dir) {
-            case EAST: image = PM_EAST;
+            case EAST:
+                image = PM_EAST;
                 break;
-            case SOUTH: image = PM_SOUTH;
+            case SOUTH:
+                image = PM_SOUTH;
                 break;
-            case WEST: image = PM_WEST;
+            case WEST:
+                image = PM_WEST;
                 break;
-            case NORTH: image = PM_NORTH;
+            case NORTH:
+                image = PM_NORTH;
                 break;
         }
     }
+
 
     public void setPos(Point pos) {
         this.pos = pos;

@@ -11,32 +11,20 @@ import static java.awt.event.KeyEvent.*;
 /*
  * Class representing the PacMan game
  * Implemented with Singleton design pattern
+ * Note: This class is the subject of the Observer design pattern for the ghosts class
  */
 public class PMGame {
 
     private PacMan pacMan;
-    private Blinky blinky;
-    private Inky inky;
-    private Pinky pinky;
-    private Clyde clyde;
-    private GhostAbstract[] ghosts;
+    private GhostAbstract[] ghosts; // Note: If we want to expand the game during runtime for more ghosts, we need a List, not an Array
+    private static int lives = 3;
 
     private static PMGame instance;
     private boolean gameOver;
 
     private PMGame() {
         pacMan = PacMan.getInstance();
-        blinky = new Blinky();
-        inky = new Inky();
-        pinky = new Pinky();
-        clyde = new Clyde();
-
-        ghosts = new GhostAbstract[4];
-        ghosts[0] = blinky;
-        ghosts[1] = inky;
-        ghosts[2] = pinky;
-        ghosts[3] = clyde;
-
+        ghosts = new GhostAbstract[] {new Blinky(), new Inky(), new Pinky(), new Clyde()};
         gameOver = false;
     }
 
@@ -47,13 +35,26 @@ public class PMGame {
         return instance;
     }
 
-    // Updates game
+    // Updates all game objects and checks to see if game is over
     // EFFECTS: Moves PacMan and ghosts
     public void update() {
         pacMan.move();
+        updateGhosts();
+        checkIfGameOver();
+    }
 
+    // Helper function for update
+    // EFFECT: Updates the positions and directions of each ghost in ghosts
+    // Note that this is equivalent to the NotifyAllObservers method in the Observer design pattern
+    private void updateGhosts() {
         for (GhostAbstract ghost : ghosts)
-            ghost.move();
+            ghost.update();
+    }
+
+    // Helper function for update
+    // EFFECT: Updates the value of isGameOver to true if lives <= 0
+    private void checkIfGameOver() {
+        gameOver = lives <= 0;
     }
 
     // Changes the direction that PacMan is facing based on the key pressed
@@ -86,19 +87,7 @@ public class PMGame {
     }
 
     // Getter methods
-    public PacMan getPacMan() {return pacMan;}
-    public Blinky getBlinky() {
-        return blinky;
-    }
-    public Inky getInky() {
-        return inky;
-    }
-    public Pinky getPinky() {
-        return pinky;
-    }
-    public Clyde getClyde() {
-        return clyde;
-    }
+    public PacMan getPacMan() {return PacMan.getInstance();}
     public GhostAbstract[] getGhosts() {return ghosts;}
     public boolean isGameOver() {return gameOver;}
 }

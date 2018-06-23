@@ -14,6 +14,9 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+/*
+ * User interface for the PacManGame. Includes runnable main class that simply creates a new instance of the class
+ */
 public class PacManGame {
     private JFrame frame;
     private PMGame game;
@@ -21,9 +24,10 @@ public class PacManGame {
     public static final int FRAME_WIDTH = 960;
     public static final int FRAME_HEIGHT = 1080;
     private final int INTERVAL = 20;
+    private final int TITLE_FONT_SIZE = 20;
 
     // Sets up PacMan game
-    private PacManGame() {
+    public PacManGame() {
         game = PMGame.getGame();
         frame = new JFrame("PacMan");
 
@@ -59,8 +63,9 @@ public class PacManGame {
 //        LayoutManager manager = new GridLayout(50,30);
 //        frame.setLayout(manager);
 
-        addPacMan();
-        addGhosts();
+        drawPacMan();
+        drawGhosts();
+        makeTitle();
     }
 
     // Removes PacMan and ghost labels from frame
@@ -87,7 +92,7 @@ public class PacManGame {
 
     // Helper function for drawObjects()
     // Displays PacMan as a JLabel in the frame
-    private void addPacMan() {
+    private void drawPacMan() {
         JLabel PM_Label = new JLabel(PacMan.getInstance().getImage());
         frame.getContentPane().add(PM_Label);
         PM_Label.setBounds(PacMan.getInstance().getPos().x,
@@ -98,7 +103,7 @@ public class PacManGame {
 
     // Helper function for drawObjects()
     // Displays all of the ghosts as JLabels in the frame
-    private void addGhosts() {
+    private void drawGhosts() {
         for (GhostAbstract ghost : game.getGhosts())
             addGhost(ghost);
     }
@@ -114,6 +119,17 @@ public class PacManGame {
                 ghost.getImage().getIconHeight());
     }
 
+    private void makeTitle() {
+        JLabel label = new JLabel("PacMan", SwingConstants.CENTER);
+        frame.getContentPane().add(label);
+        label.setVerticalAlignment(SwingConstants.TOP);
+
+        Font font = label.getFont();
+        label.setFont(new Font(font.getName(), Font.PLAIN, TITLE_FONT_SIZE));
+
+        int stringWidth = label.getFontMetrics(font).stringWidth(label.getText());
+    }
+
     /*
      * A key handler to respond to key events
      */
@@ -124,7 +140,13 @@ public class PacManGame {
         }
     }
 
+    // Getter methods (used for testing)
+    public PMGame getGame() {return game;}
+    public JFrame getFrame() {return frame;}
+
     public static void main(String[] args) {
         new PacManGame();
     }
+
+
 }
