@@ -8,7 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Inky extends GhostAbstract {
-    public static final double speed = 10.0;
+    public static final Point initialPos = new Point(50,50);
+    public static final double speed = 2.0;
 
     public static final ImageIcon INKY_EAST = new ImageIcon("Images/Inky Images/InkyEAST.png");
     public static final ImageIcon INKY_SOUTH = new ImageIcon("Images/Inky Images/InkySOUTH.png");
@@ -22,7 +23,7 @@ public class Inky extends GhostAbstract {
     }
 
     public Inky() {
-        super(speed, GhostAbstract.initialPos, INKY_EAST, Direction.EAST);
+        super(speed, initialPos, INKY_EAST, Direction.EAST);
     }
 
     @Override

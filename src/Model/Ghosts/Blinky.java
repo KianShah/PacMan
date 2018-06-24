@@ -26,7 +26,7 @@ public class Blinky extends GhostAbstract {
     }
 
     public Blinky() {
-        super(speed, GhostAbstract.initialPos, BLINKY_EAST, Direction.EAST);
+        super(speed, initialPos, BLINKY_EAST, Direction.EAST);
     }
 
     @Override

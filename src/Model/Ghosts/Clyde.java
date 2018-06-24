@@ -8,7 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Clyde extends GhostAbstract {
-    public static final double speed = 5.0;
+    public static final Point initialPos = new Point(50,50);
+    public static final double speed = 4.0;
 
     public static final ImageIcon CLYDE_EAST = new ImageIcon("Images/Clyde Images/ClydeEAST.png");
     public static final ImageIcon CLYDE_SOUTH = new ImageIcon("Images/Clyde Images/ClydeSOUTH.png");
@@ -22,7 +23,7 @@ public class Clyde extends GhostAbstract {
     }
 
     public Clyde() {
-        super(speed, GhostAbstract.initialPos, CLYDE_EAST, Direction.EAST);
+        super(speed, initialPos, CLYDE_EAST, Direction.EAST);
     }
 
     @Override

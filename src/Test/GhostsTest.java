@@ -28,7 +28,7 @@ public class GhostsTest {
         Blinky blinky = (Blinky) ghosts[0];
         assertEquals(blinky.getTargetPos(), PacMan.getInstance().getPos());
         assertEquals(blinky.getImage(), Blinky.BLINKY_EAST);
-        assertEquals(blinky.getPos(), GhostAbstract.initialPos);
+        assertEquals(blinky.getPos(), Blinky.initialPos);
         assertEquals(blinky.getDir(), Direction.EAST);
         assertEquals(blinky.getSpeed(), Blinky.speed);
     }
@@ -38,7 +38,7 @@ public class GhostsTest {
         Inky inky = (Inky) ghosts[1];
         assertEquals(inky.getTargetPos(), PacMan.getInstance().getPos());
         assertEquals(inky.getImage(), Inky.INKY_EAST);
-        assertEquals(inky.getPos(), GhostAbstract.initialPos);
+        assertEquals(inky.getPos(), Inky.initialPos);
         assertEquals(inky.getDir(), Direction.EAST);
         assertEquals(inky.getSpeed(), Inky.speed);
     }
@@ -48,7 +48,7 @@ public class GhostsTest {
         Pinky pinky = (Pinky) ghosts[2];
         assertEquals(pinky.getTargetPos(), PacMan.getInstance().getPos());
         assertEquals(pinky.getImage(), Pinky.PINKY_EAST);
-        assertEquals(pinky.getPos(), GhostAbstract.initialPos);
+        assertEquals(pinky.getPos(), Pinky.initialPos);
         assertEquals(pinky.getDir(), Direction.EAST);
         assertEquals(pinky.getSpeed(), Pinky.speed);
     }
@@ -58,7 +58,7 @@ public class GhostsTest {
         Clyde clyde = (Clyde) ghosts[3];
         assertEquals(clyde.getTargetPos(), PacMan.getInstance().getPos());
         assertEquals(clyde.getImage(), Clyde.CLYDE_EAST);
-        assertEquals(clyde.getPos(), GhostAbstract.initialPos);
+        assertEquals(clyde.getPos(), Clyde.initialPos);
         assertEquals(clyde.getDir(), Direction.EAST);
         assertEquals(clyde.getSpeed(), Clyde.speed);
     }
@@ -78,7 +78,5 @@ public class GhostsTest {
         ghost.move();
         p.y -= speed;
         assertEquals(p, ghost.getPos());
-
-
     }
 }

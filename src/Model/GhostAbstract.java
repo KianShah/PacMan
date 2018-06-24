@@ -16,8 +16,6 @@ public abstract class GhostAbstract {
     private ImageIcon image;
     private Direction dir;
 
-    public static final Point initialPos = new Point(50,50);
-
     protected GhostAbstract(double speed, Point pos, ImageIcon image, Direction dir) {
         this.speed = speed;
         this.pos = pos;
