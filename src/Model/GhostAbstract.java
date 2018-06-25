@@ -10,35 +10,19 @@ import static Util.Direction.*;
 /*
  * Abstract ghost class to implement our observer design pattern
  */
-public abstract class GhostAbstract {
-    private double speed;
-    private Point pos;
-    private ImageIcon image;
-    private Direction dir;
+public abstract class GhostAbstract extends MoveableSprite{
 
     protected GhostAbstract(double speed, Point pos, ImageIcon image, Direction dir) {
-        this.speed = speed;
-        this.pos = pos;
-        this.image = image;
-        this.dir = dir;
+        super(speed, pos, image, dir);
     }
 
     /**
      *  Updates the ghost's direction and position
      */
     public void update() {
-        //setCorrectDir();
+        setCorrectDir();
         move();
     }
-
-    /**
-     * Moves ghost in the direction given using the unit vectors of the direction
-     */
-    public void move() {
-        pos.x += speed * dir.getX_dir();
-        pos.y += speed * dir.getY_dir();
-    }
-
 
     /**
      * Sets the correct direction based on where the target position is relative to the ghost's current position
@@ -48,30 +32,28 @@ public abstract class GhostAbstract {
      */
     private void setCorrectDir() {
         Point target = getTargetPos();
-        if (target.x == pos.x) {
-            if (target.y >= pos.y)
-                setDir(Direction.SOUTH);
-            else
-                setDir(Direction.NORTH);
+        if (target.x == getPos().x) {    // If slope is undefined
+            if (target.y >= getPos().y)      // If target is AT or BELOW current pos
+                setDir(SOUTH);
+            else                        // If target is ABOVE current pos
+                setDir(NORTH);
         }
 
-        else {
-            double slope = ((double) (target.y - pos.y))/((double) (target.x - pos.x));
-
-            if (target.x < pos.x) {
-                if (slope > 1)
-                    setDir(Direction.SOUTH);
+        else {                      // Else slope is defined
+            double slope = -((double) (target.y - getPos().y))/((double) (target.x - getPos().x)); // Note that slope is made neg
+                                                                                         // since y increases downwards
+            if (target.x < getPos().x) {     // If target pos is to the LEFT of current POS
+                if (slope > 1)              // If target pos is below the 45 deg line
+                    setDir(SOUTH);
                 else if (slope < -1)
-                    setDir(Direction.NORTH);
+                    setDir(NORTH);
                 else
-                    setDir(Direction.WEST);
-            }
-
-            else {
+                    setDir(WEST);
+            } else {
                 if (slope > 1)
-                    setDir(Direction.NORTH);
+                    setDir(NORTH);
                 else if (slope < -1)
-                    setDir(Direction.SOUTH);
+                    setDir(SOUTH);
                 else
                     setDir(EAST);
             }
@@ -80,34 +62,4 @@ public abstract class GhostAbstract {
 
     // Get the target position for the Ghost. Each ghost has a unique target position
     protected abstract Point getTargetPos();
-    // Gets the array of images for each class
-    protected abstract ImageIcon[] getImages();
-
-    public void setDir(Direction dir) {
-        this.dir = dir;
-
-        ImageIcon[] images = getImages();
-
-        switch (dir) {
-            case EAST:
-                image = images[0];
-                break;
-            case SOUTH:
-                image = images[1];
-                break;
-            case WEST:
-                image = images[2];
-                break;
-            case NORTH:
-                image = images[3];
-                break;
-            default: // do nothing
-        }
-    }
-
-    // Getter methods
-    public Point getPos() {return pos;}
-    public ImageIcon getImage() {return image;}
-    public double getSpeed() {return speed;}
-    public Direction getDir() {return  dir;}
 }

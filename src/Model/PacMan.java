@@ -10,25 +10,23 @@ import java.awt.*;
  * Represents a PacMan object
  * Implemented with Singleton design pattern
  */
-public class PacMan {
+public class PacMan extends MoveableSprite{
     public static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
+    private static double speed = 6.0;
 
     public static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
     public static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");
     public static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
     public static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
 
-    private double speed = 3.0;
+    public static final ImageIcon[] images = new ImageIcon[] {PM_EAST, PM_SOUTH, PM_WEST, PM_NORTH};
+
     private static PacMan instance;
-    private Point pos;
-    private Direction dir;
-    private ImageIcon image;
+
 
     // Initializes PacMan object facing East at InitialPos
     private PacMan() {
-        this.pos = initialPos;
-        this.dir = Direction.EAST;
-        this.image = PM_EAST;
+        super(speed, initialPos, PM_EAST, Direction.EAST);
     }
 
     // returns Singleton instance of PacMan
@@ -39,46 +37,14 @@ public class PacMan {
         return instance;
     }
 
-    // EFFECTS: Moves PacMan position SPEED amount in the current direction
-    // MODIFIES: this
-    public void move() {
-        pos.x += speed * dir.getX_dir();
-        pos.y += speed * dir.getY_dir();
+    /**
+     * Returns an array of ImageIcons representing the different images associated with a ghost
+     * Contract: EAST image is images[0], SOUTH image is images[1], WEST image is images[2], NORTH image is images[3]
+     *
+     * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
+     */
+    @Override
+    public ImageIcon[] getImages() {
+        return images;
     }
-
-    // EFFECTS: Sets the direction of the PacMan object and sets the image of PacMan to the given direction
-    // MODIFIES: this
-    public void setDir(Direction dir) {
-        this.dir = dir;
-
-        switch (dir) {
-            case EAST:
-                image = PM_EAST;
-                break;
-            case SOUTH:
-                image = PM_SOUTH;
-                break;
-            case WEST:
-                image = PM_WEST;
-                break;
-            case NORTH:
-                image = PM_NORTH;
-                break;
-        }
-    }
-
-
-    public void setPos(Point pos) {
-        this.pos = pos;
-    }
-
-    // Getter functions
-    public Point getPos() {
-        return pos;
-    }
-    public double getSpeed() {
-        return speed;
-    }
-    public Direction getDir() {return dir;}
-    public ImageIcon getImage() {return image;}
 }

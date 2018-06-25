@@ -3,6 +3,7 @@ package Model.Ghosts;
 import Model.GhostAbstract;
 import Model.PacMan;
 import Util.Direction;
+import Util.Vector;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,11 +29,20 @@ public class Inky extends GhostAbstract {
 
     @Override
     public Point getTargetPos() {
-        return PacMan.getInstance().getPos();
+        Point X = PacMan.getInstance().getPosAhead(2);
+        Vector difference = new Vector(Math.abs(getPos().x - X.x), Math.abs(getPos().y - X.y));
+        difference.multiply(2);
+
+        return (Vector.toVector(this.getPos()).add(difference)).toPoint();
     }
 
+    /**
+     * Returns an array of ImageIcons representing the different images associated with a ghost
+     * Contract: EAST image is images[0], SOUTH image is images[1], WEST image is images[2], NORTH image is images[3]
+     * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
+     */
     @Override
-    protected ImageIcon[] getImages() {
+    public ImageIcon[] getImages() {
         return images;
     }
 }

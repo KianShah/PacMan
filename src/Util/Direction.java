@@ -9,22 +9,30 @@ package Util;
  */
 public enum Direction {
 
-    NORTH (0,-1),
-    EAST (1,0),
-    SOUTH (0,1),
-    WEST (-1,0);
+    NORTH (0,-1, Vector.unit_vector_NORTH),
+    EAST (1,0, Vector.unit_vector_EAST),
+    SOUTH (0,1, Vector.unit_vector_SOUTH),
+    WEST (-1,0, Vector.unit_vector_WEST);
 
     private int x;
     private int y;
+    private Vector unit_vector;
 
-    Direction(int x_dir, int y_dir) {
+    Direction(int x_dir, int y_dir, Vector unit_vector) {
         x = x_dir;
         y = y_dir;
+        this.unit_vector = unit_vector;
     }
 
     // Getter methods
     public int getX_dir() {
         return x;
     }
-    public int getY_dir() {return y;}
+    public int getY_dir() {
+        return y;
+    }
+
+    public Vector getUnit_vector() {
+        return unit_vector;
+    }
 }
