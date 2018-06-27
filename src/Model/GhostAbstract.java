@@ -12,7 +12,7 @@ import static Util.Direction.*;
  */
 public abstract class GhostAbstract extends MoveableSprite{
 
-    protected GhostAbstract(double speed, Point pos, ImageIcon image, Direction dir) {
+    protected GhostAbstract(int speed, Point pos, ImageIcon image, Direction dir) {
         super(speed, pos, image, dir);
     }
 
@@ -61,5 +61,5 @@ public abstract class GhostAbstract extends MoveableSprite{
     }
 
     // Get the target position for the Ghost. Each ghost has a unique target position
-    protected abstract Point getTargetPos();
+    public abstract Point getTargetPos();
 }

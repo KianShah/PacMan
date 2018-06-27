@@ -1,17 +1,18 @@
 package Model;
 
+import UI.PacManGame;
 import Util.Direction;
 
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class MoveableSprite {
-    private double speed;
+    private int speed;
     private ImageIcon image;
     private Point pos;
     private Direction dir;
 
-    protected MoveableSprite(double speed, Point pos, ImageIcon image, Direction dir) {
+    protected MoveableSprite(int speed, Point pos, ImageIcon image, Direction dir) {
         this.speed = speed;
         this.pos = pos;
         this.image = image;
@@ -38,7 +39,10 @@ public abstract class MoveableSprite {
     }
 
     protected boolean inBounds() {
-        return true;
+        Point posAhead = getPosAhead(1);
+
+        return (posAhead.x >= -5 && posAhead.x <= PacManGame.FRAME_WIDTH - 70) &&
+               (posAhead.y >= -5 && posAhead.y <= PacManGame.FRAME_HEIGHT - 140);
     }
 
 

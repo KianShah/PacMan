@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class PacMan extends MoveableSprite{
     public static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
-    private static double speed = 6.0;
+    private static int speed = 5;
 
     public static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
     public static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");

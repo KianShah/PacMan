@@ -1,7 +1,7 @@
 package Model.Ghosts;
 
 import Model.GhostAbstract;
-import Model.PacMan;
+import Model.PMGame;
 import Util.Direction;
 import Util.Vector;
 
@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Inky extends GhostAbstract {
-    public static final Point initialPos = new Point(50,50);
-    public static final double speed = 2.0;
+    public static final Point initialPos = new Point(100,50);
+    public static final int speed = 3;
 
     public static final ImageIcon INKY_EAST = new ImageIcon("Images/Inky Images/InkyEAST.png");
     public static final ImageIcon INKY_SOUTH = new ImageIcon("Images/Inky Images/InkySOUTH.png");
@@ -29,8 +29,9 @@ public class Inky extends GhostAbstract {
 
     @Override
     public Point getTargetPos() {
-        Point X = PacMan.getInstance().getPosAhead(2);
-        Vector difference = new Vector(Math.abs(getPos().x - X.x), Math.abs(getPos().y - X.y));
+        Point X = PMGame.getGame().getPacMan().getPosAhead(2);
+        Blinky blinky = (Blinky) PMGame.getGame().getGhosts()[0];
+        Vector difference = new Vector(X.x - blinky.getPos().x, X.y - blinky.getPos().y);
         difference.multiply(2);
 
         return (Vector.toVector(this.getPos()).add(difference)).toPoint();

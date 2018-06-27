@@ -9,9 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Clyde extends GhostAbstract {
-    public static final Point initialPos = new Point(50,50);
-    public static final double speed = 4.0;
-    public static final Point scatter_point = new Point(50, 300);
+    public static final Point initialPos = new Point(200,50);
+    public static final int speed = 3;
+    public static final Point scatter_point = new Point(10, 300);
     private boolean is_scatter = false;
 
     public static final ImageIcon CLYDE_EAST = new ImageIcon("Images/Clyde Images/ClydeEAST.png");
@@ -31,17 +31,21 @@ public class Clyde extends GhostAbstract {
 
     @Override
     public Point getTargetPos() {
-        if (Distance.getDistance(getPos(), PacMan.getInstance().getPos()) <= 8)
+        Point pos = getPos();
+        Point pacman_pos = PacMan.getInstance().getPos();
+
+        if (Distance.getDistance(pos, pacman_pos) <= 200)
             is_scatter = true;
 
-        if (getPos() == scatter_point)
+        if ((pos.x <= scatter_point.x + 5 && pos.x >= scatter_point.x - 5) &&
+                (pos.y <= scatter_point.y + 5 && pos.y >= scatter_point.y - 5)) // Defines a box 5 pixels wide
             is_scatter = false;
 
         if (is_scatter)
             return scatter_point;
 
         else
-            return PacMan.getInstance().getPos();
+            return pacman_pos;
 
     }
 

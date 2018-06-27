@@ -17,7 +17,7 @@ public class PMGame {
 
     private PacMan pacMan;
     private GhostAbstract[] ghosts; // Note: If we want to expand the game during runtime for more ghosts, we need a List, not an Array
-    private static int lives = 3;
+    private int lives = 3;
 
     private static PMGame instance;
     private boolean gameOver;

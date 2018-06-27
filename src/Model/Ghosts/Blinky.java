@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class Blinky extends GhostAbstract {
     public static final Point initialPos = new Point(50,50);
-    public static final double speed = 1.0;
+    public static final int speed = 4;
 
     public static final ImageIcon BLINKY_EAST = new ImageIcon("Images/Blinky Images/BlinkyEAST.png");
     public static final ImageIcon BLINKY_SOUTH = new ImageIcon("Images/Blinky Images/BlinkySOUTH.png");
