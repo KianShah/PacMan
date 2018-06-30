@@ -22,6 +22,7 @@ public class PMGame {
     private PacMan pacMan;
     private GhostAbstract[] ghosts; // Note: If we want to expand the game during runtime for more ghosts, we need a List, not an Array
     private List<Star> stars;
+    private int points;
     private int lives;
 
     private static PMGame instance;
@@ -42,7 +43,7 @@ public class PMGame {
      * Initializes the stars list with the required initial stars
      */
     private void addStars() {
-
+        stars.add(new Star(300,300));
     }
 
     public static PMGame getGame() {
@@ -84,6 +85,13 @@ public class PMGame {
                 gameReset();
             }
         }
+
+        for (Star star : stars) {
+            if (starCollidedWithPM(star)) {
+                points += 10;
+                stars.remove(star);
+            }
+        }
     }
 
     /**
@@ -91,12 +99,25 @@ public class PMGame {
      * @param ghost The given ghost to check if has collided with PacMan
      * @return True if PacMan has collided with the given ghost and false otherwise
      */
-    boolean ghostCollidedWithPM(GhostAbstract ghost) {
+    private boolean ghostCollidedWithPM(GhostAbstract ghost) {
         Point PM_Pos = pacMan.getPos();
         Point GH_Pos = ghost.getPos();
 
-        return (GH_Pos.x <= PM_Pos.x + 20 && GH_Pos.x >= PM_Pos.x - 20) &&
-                (GH_Pos.y <= PM_Pos.y + 20 && GH_Pos.y >= PM_Pos.y - 20);
+        return (GH_Pos.x <= PM_Pos.x + 35 && GH_Pos.x >= PM_Pos.x - 35) &&
+                (GH_Pos.y <= PM_Pos.y + 35 && GH_Pos.y >= PM_Pos.y - 35);
+    }
+
+    /**
+     * Helper function for collisionHandler
+     * @param star The given star to check if has collided with PacMan
+     * @return true if PacMan has collided with the given star and false otherwise
+     */
+    private boolean starCollidedWithPM(Star star) {
+        Point PM_Pos = pacMan.getPos();
+        Point ST_Pos = star.pos;
+
+        return (ST_Pos.x <= PM_Pos.x + 30 && ST_Pos.x >= PM_Pos.x - 30) &&
+                (ST_Pos.y <= PM_Pos.y + 30 && ST_Pos.y >= PM_Pos.y - 30);
     }
 
     /**

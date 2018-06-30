@@ -24,7 +24,7 @@ public class PacManGame {
 
     public static final int FRAME_WIDTH = 960;
     public static final int FRAME_HEIGHT = 1080;
-    private final int INTERVAL = 20;
+    private final int INTERVAL = 100;
     private final int TITLE_FONT_SIZE = 20;
 
     // Sets up PacMan game
@@ -100,8 +100,8 @@ public class PacManGame {
         frame.getContentPane().add(PM_Label);
         PM_Label.setBounds(PacMan.getInstance().getPos().x,
                 PacMan.getInstance().getPos().y,
-                PacMan.getInstance().getImage().getIconWidth()+15,  // +15 is to remove artifacts that appear
-                PacMan.getInstance().getImage().getIconHeight()+15);
+                PacMan.getInstance().getImage().getIconWidth(),  // +15 is to remove artifacts that appear
+                PacMan.getInstance().getImage().getIconHeight());
     }
 
     /**
