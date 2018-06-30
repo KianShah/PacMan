@@ -18,7 +18,7 @@ public class PMGameTest {
 
     @BeforeEach
     public void runBefore() {
-        game = PMGame.getGame();
+        game = PMGame.getInstance();
         pacMan = game.getPacMan();
         ghosts = game.getGhosts();
     }

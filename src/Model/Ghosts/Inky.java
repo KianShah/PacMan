@@ -29,8 +29,8 @@ public class Inky extends GhostAbstract {
 
     @Override
     public Point getTargetPos() {
-        Point X = PMGame.getGame().getPacMan().getPosAhead(2);
-        Blinky blinky = (Blinky) PMGame.getGame().getGhosts()[0];
+        Point X = PMGame.getInstance().getPacMan().getPosAhead(2);
+        Blinky blinky = (Blinky) PMGame.getInstance().getGhosts()[0];
         Vector difference = new Vector(X.x - blinky.getPos().x, X.y - blinky.getPos().y);
         difference.multiply(2);
 

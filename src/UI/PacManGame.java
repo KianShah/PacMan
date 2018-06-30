@@ -20,21 +20,23 @@ import java.io.IOException;
  */
 public class PacManGame {
     private JFrame frame;
+    private Timer timer;
     private PMGame game;
 
     public static final int FRAME_WIDTH = 960;
     public static final int FRAME_HEIGHT = 1080;
-    private final int INTERVAL = 100;
-    private final int TITLE_FONT_SIZE = 20;
+    private final int INTERVAL = 20;
+    private final int TITLE_FONT_SIZE = 24;
 
     // Sets up PacMan game
     public PacManGame() {
-        game = PMGame.getGame();
+        game = PMGame.getInstance();
         frame = new JFrame("PacMan");
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // defines what happens when window closes
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);                       // sets size of frame
         centreFrame();
+        frame.setBackground(Color.BLACK);
 
         try {frame.setIconImage(ImageIO.read(new File("Images/PacMan Images/PacManEAST.png")));}
         catch (IOException e){                                  // Sets the window icon to an image of PacMan
@@ -61,36 +63,12 @@ public class PacManGame {
      * MODIFIES: frame
      */
     private void drawObjects() {
-//        LayoutManager manager = new GridLayout(50,30);
-//        frame.setLayout(manager);
-
         drawPacMan();
         drawGhosts();
         drawStars();
         makeTitle();
     }
 
-    // Removes all labels from frame
-    private void removeObjects() {
-        frame.getContentPane().removeAll();
-    }
-
-
-    // Adds a timer to perform operations at every INTERVAL ms
-    private void addTimer() {
-        Timer t = new Timer(INTERVAL, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                removeObjects();
-                if (!game.isGameOver()) {
-                    game.update();
-                }
-                drawObjects();
-            }
-        });
-
-        t.start();  // starts timer, ends when gameoOver = true
-    }
     /**
      * Helper function for drawObjects()
      * Displays PacMan as a JLabel in the frame
@@ -145,8 +123,62 @@ public class PacManGame {
 
         Font font = label.getFont();
         label.setFont(new Font(font.getName(), Font.PLAIN, TITLE_FONT_SIZE));
+    }
 
-        //int stringWidth = label.getFontMetrics(font).stringWidth(label.getText());
+    // Adds a timer to perform operations at every INTERVAL ms
+    private void addTimer() {
+        timer = new Timer(INTERVAL, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (game.isGameWon()) {
+                    stopTimer();
+                    YouWon();
+                }
+
+                else if (game.isGameOver()) {
+                    stopTimer();
+                    YouLost();
+                }
+
+                else {
+                    removeObjects();
+                    game.update();
+                    drawObjects();
+                    frame.revalidate();
+                }
+            }
+        });
+
+        timer.start();  // starts timer, ends when gameOver = true
+    }
+
+    // Displays text "You Won!!!" on screen and final score
+    private void YouWon() {
+        String string = "You Won!!!          Total Score: ".concat(String.valueOf(game.getPoints()));
+        JLabel label = new JLabel(string, SwingConstants.CENTER);
+        frame.getContentPane().add(label);
+
+        Font font = label.getFont();
+        label.setFont(new Font(font.getName(), Font.PLAIN, TITLE_FONT_SIZE));
+    }
+
+    // Displays text "You lost :(" and final score
+    private void YouLost() {
+        String string = "You Lost :(          Total Score: ".concat(String.valueOf(game.getPoints()));
+        JLabel label = new JLabel(string, SwingConstants.CENTER);
+        frame.getContentPane().add(label);
+
+        Font font = label.getFont();
+        label.setFont(new Font(font.getName(), Font.PLAIN, TITLE_FONT_SIZE));
+    }
+
+    private void stopTimer() {
+        timer.stop();
+    }
+
+    // Removes all labels from frame
+    private void removeObjects() {
+        frame.getContentPane().removeAll();
     }
 
     /*
@@ -159,7 +191,7 @@ public class PacManGame {
         }
     }
 
-    // Getter methods
+    // Getter methods (For testing only)
     public PMGame getGame() {return game;}
     public JFrame getFrame() {return frame;}
 

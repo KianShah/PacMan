@@ -23,6 +23,6 @@ public class PacManGameTest {
 
     @Test
     public void testConstructor() {
-        assertEquals(6, frame.getContentPane().getComponents().length);
+        assertEquals(7, frame.getContentPane().getComponents().length);
     }
 }

@@ -4,6 +4,7 @@ import Model.Ghosts.Blinky;
 import Model.Ghosts.Clyde;
 import Model.Ghosts.Inky;
 import Model.Ghosts.Pinky;
+import UI.PacManGame;
 import Util.Direction;
 
 import java.awt.*;
@@ -22,35 +23,43 @@ public class PMGame {
     private PacMan pacMan;
     private GhostAbstract[] ghosts; // Note: If we want to expand the game during runtime for more ghosts, we need a List, not an Array
     private List<Star> stars;
+
     private int points;
     private int lives;
 
     private static PMGame instance;
+
     private boolean gameOver;
+    private boolean gameWon;
 
     private PMGame() {
         pacMan = PacMan.getInstance();
         ghosts = new GhostAbstract[] {new Blinky(), new Inky(), new Pinky(), new Clyde()};
         stars = new LinkedList<>();
 
+        points = 0;
         lives = 3;
+
+        gameWon = false;
         gameOver = false;
 
         addStars();
+    }
+
+    public static PMGame getInstance() {
+        if (instance == null)
+            instance = new PMGame();
+
+        return instance;
     }
 
     /**
      * Initializes the stars list with the required initial stars
      */
     private void addStars() {
-        stars.add(new Star(300,300));
-    }
-
-    public static PMGame getGame() {
-        if (instance == null)
-            instance = new PMGame();
-
-        return instance;
+        for (int y = 100; y + 200 < PacManGame.FRAME_HEIGHT; y += 200)
+            for (int x = 100; x + 200 < PacManGame.FRAME_WIDTH; x += 200)
+                stars.add(new Star(x,y));
     }
 
     /**
@@ -62,6 +71,7 @@ public class PMGame {
         updateGhosts();
         collisionHandler();
         checkIfGameOver();
+        checkIfGameWon();
     }
 
     /**
@@ -82,16 +92,25 @@ public class PMGame {
         for (GhostAbstract ghost : ghosts) {
             if (ghostCollidedWithPM(ghost)) {
                 lives--;
+                points -= 100;
                 gameReset();
             }
         }
 
-        for (Star star : stars) {
-            if (starCollidedWithPM(star)) {
-                points += 10;
-                stars.remove(star);
+        // Assume that PacMan can only collide with one star at a time
+        int starToBeRemoved = -1;
+
+        for (int i = 0; i < stars.size(); ++i) {
+            if (starCollidedWithPM(stars.get(i))) {
+                points += 20;
+                starToBeRemoved = i;
             }
         }
+
+        if (starToBeRemoved != -1)
+            stars.remove(starToBeRemoved);
+
+
     }
 
     /**
@@ -137,10 +156,18 @@ public class PMGame {
 
     /**
      * Helper function for update
-     * EFFECT: Updates the value of isGameOver to true if lives <= 0
+     * EFFECT: Updates the value of gameOver to true if lives <= 0
      */
     private void checkIfGameOver() {
         gameOver = lives <= 0;
+    }
+
+    /**
+     * Helper function for update
+     * EFFECT: Updates the value of gameWon to true if stars is empty
+     */
+    private void checkIfGameWon() {
+        gameWon = stars.isEmpty();
     }
 
     /**
@@ -179,5 +206,10 @@ public class PMGame {
     public PacMan getPacMan() {return PacMan.getInstance();}
     public GhostAbstract[] getGhosts() {return ghosts;}
     public List<Star> getStars() {return stars;}
+
+    public int getPoints() {return points;}
+    public int getLives() {return lives;}
+
+    public boolean isGameWon() {return gameWon;}
     public boolean isGameOver() {return gameOver;}
 }
