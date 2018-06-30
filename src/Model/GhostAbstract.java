@@ -11,9 +11,15 @@ import static Util.Direction.*;
  * Abstract ghost class to implement our observer design pattern
  */
 public abstract class GhostAbstract extends MoveableSprite{
+    private Point initialPos;
 
+    // GhostAbstract Constructor
+    // Note that the value of initialPos is set to the first value that we set for pos
+    // INVARIANT: All calls to a Ghost's constructor must be made with the ghost's static initial position
+    // passed in the constructor
     protected GhostAbstract(int speed, Point pos, ImageIcon image, Direction dir) {
         super(speed, pos, image, dir);
+        initialPos = new Point(pos.x, pos.y);
     }
 
     /**
@@ -58,6 +64,10 @@ public abstract class GhostAbstract extends MoveableSprite{
                     setDir(EAST);
             }
         }
+    }
+
+    public Point getInitialPos() {
+        return initialPos;
     }
 
     // Get the target position for the Ghost. Each ghost has a unique target position

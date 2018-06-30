@@ -3,6 +3,7 @@ package UI;
 import Model.GhostAbstract;
 import Model.PMGame;
 import Model.PacMan;
+import Model.Star;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -46,7 +47,7 @@ public class PacManGame {
         addTimer();
     }
 
-    /*
+    /**
      *  Centres frame within window
      */
     private void centreFrame() {
@@ -54,7 +55,7 @@ public class PacManGame {
         frame.setLocation((scrn.width - FRAME_WIDTH) / 2, (scrn.height - FRAME_HEIGHT) / 2);
     }
 
-    /*
+    /**
      * Draws all of the objects necessary in the new window frame:
      * EFFECTS: Draws PacMan and ghosts
      * MODIFIES: frame
@@ -65,10 +66,11 @@ public class PacManGame {
 
         drawPacMan();
         drawGhosts();
+        drawStars();
         makeTitle();
     }
 
-    // Removes PacMan and ghost labels from frame
+    // Removes all labels from frame
     private void removeObjects() {
         frame.getContentPane().removeAll();
     }
@@ -89,9 +91,10 @@ public class PacManGame {
 
         t.start();  // starts timer, ends when gameoOver = true
     }
-
-    // Helper function for drawObjects()
-    // Displays PacMan as a JLabel in the frame
+    /**
+     * Helper function for drawObjects()
+     * Displays PacMan as a JLabel in the frame
+     */
     private void drawPacMan() {
         JLabel PM_Label = new JLabel(PacMan.getInstance().getImage());
         frame.getContentPane().add(PM_Label);
@@ -101,24 +104,40 @@ public class PacManGame {
                 PacMan.getInstance().getImage().getIconHeight()+15);
     }
 
-    // Helper function for drawObjects()
-    // Displays all of the ghosts as JLabels in the frame
+    /**
+     * Helper function for drawObjects()
+     * Displays all of the ghosts as JLabels in the frame
+     */
     private void drawGhosts() {
-        for (GhostAbstract ghost : game.getGhosts())
-            addGhost(ghost);
+        for (GhostAbstract ghost : game.getGhosts()) {
+            JLabel label = new JLabel(ghost.getImage());
+            frame.getContentPane().add(label);
+            label.setBounds(ghost.getPos().x,
+                    ghost.getPos().y,
+                    ghost.getImage().getIconWidth(),
+                    ghost.getImage().getIconHeight());
+        }
     }
 
-    // Helper function for addGhosts()
-    // Displays the given ghost as a JLabel in the frame
-    private void addGhost(GhostAbstract ghost) {
-        JLabel label = new JLabel(ghost.getImage());
-        frame.getContentPane().add(label);
-        label.setBounds(ghost.getPos().x,
-                ghost.getPos().y,
-                ghost.getImage().getIconWidth(),
-                ghost.getImage().getIconHeight());
+    /**
+     * Helper function for drawObjects()
+     * Displays all stars as JLabels in the frame
+     */
+    private void drawStars() {
+        for (Star star : game.getStars()) {
+            JLabel label = new JLabel(Star.image);
+            frame.getContentPane().add(label);
+            label.setBounds(star.pos.x,
+                    star.pos.y,
+                    Star.image.getIconWidth(),
+                    Star.image.getIconHeight());
+        }
     }
 
+    /**
+     * Helper function for drawObjects()
+     * Displays the title of the game as a JLabel in the frame
+     */
     private void makeTitle() {
         JLabel label = new JLabel("PacMan", SwingConstants.CENTER);
         frame.getContentPane().add(label);
@@ -127,7 +146,7 @@ public class PacManGame {
         Font font = label.getFont();
         label.setFont(new Font(font.getName(), Font.PLAIN, TITLE_FONT_SIZE));
 
-        int stringWidth = label.getFontMetrics(font).stringWidth(label.getText());
+        //int stringWidth = label.getFontMetrics(font).stringWidth(label.getText());
     }
 
     /*
@@ -140,10 +159,11 @@ public class PacManGame {
         }
     }
 
-    // Getter methods (used for testing)
+    // Getter methods
     public PMGame getGame() {return game;}
     public JFrame getFrame() {return frame;}
 
+    // Runnable main method
     public static void main(String[] args) {
         new PacManGame();
     }

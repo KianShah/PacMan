@@ -33,18 +33,24 @@ public abstract class MoveableSprite {
     public Point getPosAhead(int X) {
         Point newPos = new Point();
 
-        newPos.x = pos.x + (int) speed * dir.getX_dir() * X;
-        newPos.y = pos.y + (int) speed * dir.getY_dir() * X;
+        newPos.x = pos.x + speed * dir.getX_dir() * X;
+        newPos.y = pos.y + speed * dir.getY_dir() * X;
         return newPos;
     }
 
-    protected boolean inBounds() {
+    private boolean inBounds() {
         Point posAhead = getPosAhead(1);
 
         return (posAhead.x >= -5 && posAhead.x <= PacManGame.FRAME_WIDTH - 70) &&
                (posAhead.y >= -5 && posAhead.y <= PacManGame.FRAME_HEIGHT - 140);
     }
 
+
+
+    // Setter methods
+    public void setPos(Point pos) {
+        this.pos = pos;
+    }
 
     public void setDir(Direction dir) {
         this.dir = dir;
