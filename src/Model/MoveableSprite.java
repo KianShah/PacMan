@@ -3,16 +3,15 @@ package Model;
 import UI.PacManGame;
 import Util.Direction;
 
-import javax.swing.*;
 import java.awt.*;
 
 public abstract class MoveableSprite {
     private int speed;
-    private ImageIcon image;
+    private Image image;
     private Point pos;
     private Direction dir;
 
-    protected MoveableSprite(int speed, Point pos, ImageIcon image, Direction dir) {
+    protected MoveableSprite(int speed, Point pos, Image image, Direction dir) {
         this.speed = speed;
         this.pos = pos;
         this.image = image;
@@ -54,7 +53,7 @@ public abstract class MoveableSprite {
 
     public void setDir(Direction dir) {
         this.dir = dir;
-                ImageIcon[] images = getImages();
+        Image[] images = getImages();
 
         switch (dir) {
             case EAST:
@@ -79,7 +78,7 @@ public abstract class MoveableSprite {
      * Contract: EAST image is images[0], SOUTH image is images[1], WEST image is images[2], NORTH image is images[3]
      * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
      */
-    public abstract ImageIcon[] getImages();
+    public abstract Image[] getImages();
 
 //    /**
 //     * Returns an ImageIcon object of the image found at the given filepath
@@ -88,7 +87,7 @@ public abstract class MoveableSprite {
 //     */
 //    protected static abstract ImageIcon getImage(String filepath);
 
-    public ImageIcon getImage() {
+    public Image getImage() {
         return image;
     }
     public double getSpeed() {

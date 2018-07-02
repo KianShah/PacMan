@@ -4,8 +4,8 @@ import Model.GhostAbstract;
 import Model.PacMan;
 import Util.Direction;
 import Util.Distance;
+import Util.ImageBuffer;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Clyde extends GhostAbstract {
@@ -14,14 +14,14 @@ public class Clyde extends GhostAbstract {
     public static final Point scatter_point = new Point(10, 300);
     private boolean is_scatter = false;
 
-    public static final ImageIcon CLYDE_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeEAST.png");
-    public static final ImageIcon CLYDE_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeSOUTH.png");
-    public static final ImageIcon CLYDE_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeWEST.png");
-    public static final ImageIcon CLYDE_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeNORTH.png");
+    public static final Image CLYDE_EAST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Clyde Images/ClydeEAST.png", Clyde.class);
+    public static final Image CLYDE_SOUTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Clyde Images/ClydeSOUTH.png", Clyde.class);
+    public static final Image CLYDE_WEST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Clyde Images/ClydeWEST.png", Clyde.class);
+    public static final Image CLYDE_NORTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Clyde Images/ClydeNORTH.png", Clyde.class);
 
-    public final ImageIcon[] images = {CLYDE_EAST, CLYDE_SOUTH, CLYDE_WEST, CLYDE_NORTH};
+    public final Image[] images = {CLYDE_EAST, CLYDE_SOUTH, CLYDE_WEST, CLYDE_NORTH};
 
-    public Clyde(int speed, Point pos, ImageIcon image, Direction dir) {
+    public Clyde(int speed, Point pos, Image image, Direction dir) {
         super(speed, pos, image, dir);
     }
 
@@ -55,7 +55,7 @@ public class Clyde extends GhostAbstract {
      * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
      */
     @Override
-    public ImageIcon[] getImages() {
+    public Image[] getImages() {
         return images;
     }
 }

@@ -3,22 +3,22 @@ package Model.Ghosts;
 import Model.GhostAbstract;
 import Model.PacMan;
 import Util.Direction;
+import Util.ImageBuffer;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Pinky extends GhostAbstract {
     public static final Point initialPos = new Point(150,50);
     public static final int speed = 4;
 
-    public static final ImageIcon PINKY_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyEAST.png");
-    public static final ImageIcon PINKY_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkySOUTH.png");
-    public static final ImageIcon PINKY_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyWEST.png");
-    public static final ImageIcon PINKY_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyNORTH.png");
+    public static final Image PINKY_EAST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Pinky Images/PinkyEAST.png", Pinky.class);
+    public static final Image PINKY_SOUTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Pinky Images/PinkySOUTH.png", Pinky.class);
+    public static final Image PINKY_WEST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Pinky Images/PinkyWEST.png", Pinky.class);
+    public static final Image PINKY_NORTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Pinky Images/PinkyNORTH.png", Pinky.class);
 
-    public final ImageIcon[] images = {PINKY_EAST, PINKY_SOUTH, PINKY_WEST, PINKY_NORTH};
+    public final Image[] images = {PINKY_EAST, PINKY_SOUTH, PINKY_WEST, PINKY_NORTH};
 
-    public Pinky(int speed, Point pos, ImageIcon image, Direction dir) {
+    public Pinky(int speed, Point pos, Image image, Direction dir) {
         super(speed, pos, image, dir);
     }
 
@@ -37,7 +37,7 @@ public class Pinky extends GhostAbstract {
      * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
      */
     @Override
-    public ImageIcon[] getImages() {
+    public Image[] getImages() {
         return images;
     }
 }

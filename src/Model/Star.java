@@ -1,6 +1,7 @@
 package Model;
 
-import javax.swing.*;
+import Util.ImageBuffer;
+
 import java.awt.*;
 
 /**
@@ -10,7 +11,7 @@ public class Star {
     public Point pos;
 
     public static final int margin = 20; // Represents the space between stars on the map
-    public static final ImageIcon image = new ImageIcon("src/Images/star.png");
+    public static final Image image = ImageBuffer.getImage("/Model/star.png", Star.class);
 
     public Star(Point pos) {
         this.pos = pos;

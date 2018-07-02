@@ -1,7 +1,6 @@
 package Util;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -13,10 +12,9 @@ public class ImageBuffer {
      * @param cl
      * @return
      */
-    public static ImageIcon getImage(String filepath, Class cl) {
+    public static Image getImage(String filepath, Class cl) {
         try {
-            Image image = ImageIO.read(cl.getResource(filepath));
-            return new ImageIcon(image);
+            return ImageIO.read(cl.getResource(filepath));
         }
         catch (IOException e) {
             e.printStackTrace();

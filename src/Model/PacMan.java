@@ -18,12 +18,12 @@ public class PacMan extends MoveableSprite{
     public static final Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
     private static int speed = 7;
 
-    public static final ImageIcon PM_EAST = ImageBuffer.getImage("/Model/PacMan Images/PacManEAST.png", PacMan.class);
-    public static final ImageIcon PM_SOUTH = ImageBuffer.getImage("/Model/PacMan Images/PacManSOUTH.png", PacMan.class);
-    public static final ImageIcon PM_WEST = ImageBuffer.getImage("/Model/PacMan Images/PacManWEST.png", PacMan.class);
-    public static final ImageIcon PM_NORTH = ImageBuffer.getImage("/Model/PacMan Images/PacManNORTH.png", PacMan.class);
+    public static final Image PM_EAST = ImageBuffer.getImage("/Model/PacMan Images/PacManEAST.png", PacMan.class);
+    public static final Image PM_SOUTH = ImageBuffer.getImage("/Model/PacMan Images/PacManSOUTH.png", PacMan.class);
+    public static final Image PM_WEST = ImageBuffer.getImage("/Model/PacMan Images/PacManWEST.png", PacMan.class);
+    public static final Image PM_NORTH = ImageBuffer.getImage("/Model/PacMan Images/PacManNORTH.png", PacMan.class);
 
-    public static final ImageIcon[] images = new ImageIcon[] {PM_EAST, PM_SOUTH, PM_WEST, PM_NORTH};
+    public static final Image[] images = new Image[] {PM_EAST, PM_SOUTH, PM_WEST, PM_NORTH};
 
     private static PacMan instance;
 
@@ -48,7 +48,7 @@ public class PacMan extends MoveableSprite{
      * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
      */
     @Override
-    public ImageIcon[] getImages() {
+    public Image[] getImages() {
         return images;
     }
 

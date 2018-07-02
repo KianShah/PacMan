@@ -3,23 +3,23 @@ package Model.Ghosts;
 import Model.GhostAbstract;
 import Model.PMGame;
 import Util.Direction;
+import Util.ImageBuffer;
 import Util.Vector;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Inky extends GhostAbstract {
     public static final Point initialPos = new Point(100,50);
     public static final int speed = 3;
 
-    public static final ImageIcon INKY_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyEAST.png");
-    public static final ImageIcon INKY_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkySOUTH.png");
-    public static final ImageIcon INKY_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyWEST.png");
-    public static final ImageIcon INKY_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyNORTH.png");
+    public static final Image INKY_EAST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Inky Images/InkyEAST.png", Inky.class);
+    public static final Image INKY_SOUTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Inky Images/InkySOUTH.png", Inky.class);
+    public static final Image INKY_WEST = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Inky Images/InkyWEST.png", Inky.class);
+    public static final Image INKY_NORTH = ImageBuffer.getImage("/Model/Ghosts/Ghost_Images/Inky Images/InkyNORTH.png", Inky.class);
 
-    private final ImageIcon[] images = {INKY_EAST, INKY_SOUTH, INKY_WEST, INKY_NORTH};
+    private final Image[] images = {INKY_EAST, INKY_SOUTH, INKY_WEST, INKY_NORTH};
 
-    public Inky(int speed, Point pos, ImageIcon image, Direction dir) {
+    public Inky(int speed, Point pos, Image image, Direction dir) {
         super(speed, pos, image, dir);
     }
 
@@ -43,7 +43,7 @@ public class Inky extends GhostAbstract {
      * @return ImageIcon[] An array of ImageIcons representing the East, South, West and North images of the ghost
      */
     @Override
-    public ImageIcon[] getImages() {
+    public Image[] getImages() {
         return images;
     }
 }

@@ -5,13 +5,10 @@ import Model.PMGame;
 import Model.PacMan;
 import Model.Star;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
 /*
  * User interface for the PacManGame. Includes runnable main class that simply creates a new instance of the class
@@ -34,11 +31,7 @@ public class PacManGame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // defines what happens when window closes
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);                       // sets size of frame
         centreFrame();
-
-        try {frame.setIconImage(PacMan.PM_EAST);}
-        catch (IOException e){                                  // Sets the window icon to an image of PacMan
-            e.printStackTrace();
-        }
+        frame.setIconImage(PacMan.PM_EAST);
 
         frame.addKeyListener(new KeyHandler());
         drawObjects();
@@ -71,12 +64,12 @@ public class PacManGame {
      * Displays PacMan as a JLabel in the frame
      */
     private void drawPacMan() {
-        JLabel PM_Label = new JLabel(PacMan.getInstance().getImage());
+        JLabel PM_Label = new JLabel(new ImageIcon(PacMan.getInstance().getImage()));
         frame.getContentPane().add(PM_Label);
         PM_Label.setBounds(PacMan.getInstance().getPos().x,
                 PacMan.getInstance().getPos().y,
-                PacMan.getInstance().getImage().getIconWidth(),  // +15 is to remove artifacts that appear
-                PacMan.getInstance().getImage().getIconHeight());
+                PacMan.getInstance().getImage().getWidth(null),
+                PacMan.getInstance().getImage().getHeight(null));
     }
 
     /**
@@ -85,12 +78,12 @@ public class PacManGame {
      */
     private void drawGhosts() {
         for (GhostAbstract ghost : game.getGhosts()) {
-            JLabel label = new JLabel(ghost.getImage());
+            JLabel label = new JLabel(new ImageIcon(ghost.getImage()));
             frame.getContentPane().add(label);
             label.setBounds(ghost.getPos().x,
                     ghost.getPos().y,
-                    ghost.getImage().getIconWidth(),
-                    ghost.getImage().getIconHeight());
+                    ghost.getImage().getWidth(null),
+                    ghost.getImage().getHeight(null));
         }
     }
 
@@ -100,12 +93,12 @@ public class PacManGame {
      */
     private void drawStars() {
         for (Star star : game.getStars()) {
-            JLabel label = new JLabel(Star.image);
+            JLabel label = new JLabel(new ImageIcon(Star.image));
             frame.getContentPane().add(label);
             label.setBounds(star.pos.x,
                     star.pos.y,
-                    Star.image.getIconWidth(),
-                    Star.image.getIconHeight());
+                    Star.image.getWidth(null),
+                    Star.image.getHeight(null));
         }
     }
 

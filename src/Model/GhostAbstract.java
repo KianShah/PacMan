@@ -2,7 +2,6 @@ package Model;
 
 import Util.Direction;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static Util.Direction.*;
@@ -17,7 +16,7 @@ public abstract class GhostAbstract extends MoveableSprite{
     // Note that the value of initialPos is set to the first value that we set for pos
     // INVARIANT: All calls to a Ghost's constructor must be made with the ghost's static initial position
     // passed in the constructor
-    protected GhostAbstract(int speed, Point pos, ImageIcon image, Direction dir) {
+    protected GhostAbstract(int speed, Point pos, Image image, Direction dir) {
         super(speed, pos, image, dir);
         initialPos = new Point(pos.x, pos.y);
     }
