@@ -14,9 +14,9 @@ public enum Direction {
     SOUTH (0,1, Vector.unit_vector_SOUTH),
     WEST (-1,0, Vector.unit_vector_WEST);
 
-    private int x;
-    private int y;
-    private Vector unit_vector;
+    private final int x;
+    private final int y;
+    private final Vector unit_vector;
 
     Direction(int x_dir, int y_dir, Vector unit_vector) {
         x = x_dir;

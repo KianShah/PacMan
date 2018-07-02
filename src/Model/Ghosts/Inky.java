@@ -12,10 +12,10 @@ public class Inky extends GhostAbstract {
     public static final Point initialPos = new Point(100,50);
     public static final int speed = 3;
 
-    public static final ImageIcon INKY_EAST = new ImageIcon("Images/Inky Images/InkyEAST.png");
-    public static final ImageIcon INKY_SOUTH = new ImageIcon("Images/Inky Images/InkySOUTH.png");
-    public static final ImageIcon INKY_WEST = new ImageIcon("Images/Inky Images/InkyWEST.png");
-    public static final ImageIcon INKY_NORTH = new ImageIcon("Images/Inky Images/InkyNORTH.png");
+    public static final ImageIcon INKY_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyEAST.png");
+    public static final ImageIcon INKY_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkySOUTH.png");
+    public static final ImageIcon INKY_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyWEST.png");
+    public static final ImageIcon INKY_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Inky Images/InkyNORTH.png");
 
     private final ImageIcon[] images = {INKY_EAST, INKY_SOUTH, INKY_WEST, INKY_NORTH};
 
@@ -29,10 +29,10 @@ public class Inky extends GhostAbstract {
 
     @Override
     public Point getTargetPos() {
-        Point X = PMGame.getInstance().getPacMan().getPosAhead(2);
+        Point X = PMGame.getInstance().getPacMan().getPosAhead(5);
         Blinky blinky = (Blinky) PMGame.getInstance().getGhosts()[0];
         Vector difference = new Vector(X.x - blinky.getPos().x, X.y - blinky.getPos().y);
-        difference.multiply(2);
+        difference = difference.multiply(2);
 
         return (Vector.toVector(this.getPos()).add(difference)).toPoint();
     }

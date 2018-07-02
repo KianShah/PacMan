@@ -81,6 +81,13 @@ public abstract class MoveableSprite {
      */
     public abstract ImageIcon[] getImages();
 
+//    /**
+//     * Returns an ImageIcon object of the image found at the given filepath
+//     * @param filepath The filepath that contains the image
+//     * @return The ImageIcon object that represents the image
+//     */
+//    protected static abstract ImageIcon getImage(String filepath);
+
     public ImageIcon getImage() {
         return image;
     }

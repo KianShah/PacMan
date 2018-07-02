@@ -11,10 +11,10 @@ public class Pinky extends GhostAbstract {
     public static final Point initialPos = new Point(150,50);
     public static final int speed = 4;
 
-    public static final ImageIcon PINKY_EAST = new ImageIcon("Images/Pinky Images/PinkyEAST.png");
-    public static final ImageIcon PINKY_SOUTH = new ImageIcon("Images/Pinky Images/PinkySOUTH.png");
-    public static final ImageIcon PINKY_WEST = new ImageIcon("Images/Pinky Images/PinkyWEST.png");
-    public static final ImageIcon PINKY_NORTH = new ImageIcon("Images/Pinky Images/PinkyNORTH.png");
+    public static final ImageIcon PINKY_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyEAST.png");
+    public static final ImageIcon PINKY_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkySOUTH.png");
+    public static final ImageIcon PINKY_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyWEST.png");
+    public static final ImageIcon PINKY_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Pinky Images/PinkyNORTH.png");
 
     public final ImageIcon[] images = {PINKY_EAST, PINKY_SOUTH, PINKY_WEST, PINKY_NORTH};
 

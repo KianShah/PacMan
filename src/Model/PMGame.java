@@ -57,8 +57,9 @@ public class PMGame {
      * Initializes the stars list with the required initial stars
      */
     private void addStars() {
-        for (int y = 100; y + 200 < PacManGame.FRAME_HEIGHT; y += 200)
-            for (int x = 100; x + 200 < PacManGame.FRAME_WIDTH; x += 200)
+
+        for (int y = 100; y + 100 < PacManGame.FRAME_HEIGHT; y += 200)
+            for (int x = 100; x + 100 < PacManGame.FRAME_WIDTH; x += 200)
                 stars.add(new Star(x,y));
     }
 
@@ -109,8 +110,6 @@ public class PMGame {
 
         if (starToBeRemoved != -1)
             stars.remove(starToBeRemoved);
-
-
     }
 
     /**
@@ -203,13 +202,26 @@ public class PMGame {
     }
 
     // Getter methods
-    public PacMan getPacMan() {return PacMan.getInstance();}
-    public GhostAbstract[] getGhosts() {return ghosts;}
-    public List<Star> getStars() {return stars;}
 
-    public int getPoints() {return points;}
-    public int getLives() {return lives;}
-
-    public boolean isGameWon() {return gameWon;}
-    public boolean isGameOver() {return gameOver;}
+    public PacMan getPacMan() {
+        return pacMan;
+    }
+    public GhostAbstract[] getGhosts() {
+        return ghosts;
+    }
+    public List<Star> getStars() {
+        return stars;
+    }
+    public int getPoints() {
+        return points;
+    }
+    public int getLives() {
+        return lives;
+    }
+    public boolean isGameOver() {
+        return gameOver;
+    }
+    public boolean isGameWon() {
+        return gameWon;
+    }
 }

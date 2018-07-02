@@ -8,8 +8,6 @@ import Model.Star;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -25,7 +23,7 @@ public class PacManGame {
 
     public static final int FRAME_WIDTH = 960;
     public static final int FRAME_HEIGHT = 1080;
-    private final int INTERVAL = 20;
+    private final int INTERVAL = 17;
     private final int TITLE_FONT_SIZE = 24;
 
     // Sets up PacMan game
@@ -36,11 +34,10 @@ public class PacManGame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // defines what happens when window closes
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);                       // sets size of frame
         centreFrame();
-        frame.setBackground(Color.BLACK);
 
-        try {frame.setIconImage(ImageIO.read(new File("Images/PacMan Images/PacManEAST.png")));}
+        try {frame.setIconImage(PacMan.PM_EAST);}
         catch (IOException e){                                  // Sets the window icon to an image of PacMan
-            System.out.println("IOException thrown");
+            e.printStackTrace();
         }
 
         frame.addKeyListener(new KeyHandler());
@@ -127,25 +124,22 @@ public class PacManGame {
 
     // Adds a timer to perform operations at every INTERVAL ms
     private void addTimer() {
-        timer = new Timer(INTERVAL, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (game.isGameWon()) {
-                    stopTimer();
-                    YouWon();
-                }
+        timer = new Timer(INTERVAL, e -> {
+            if (game.isGameWon()) {
+                stopTimer();
+                YouWon();
+            }
 
-                else if (game.isGameOver()) {
-                    stopTimer();
-                    YouLost();
-                }
+            else if (game.isGameOver()) {
+                stopTimer();
+                YouLost();
+            }
 
-                else {
-                    removeObjects();
-                    game.update();
-                    drawObjects();
-                    frame.revalidate();
-                }
+            else {
+                removeObjects();
+                game.update();
+                drawObjects();
+                frame.revalidate();
             }
         });
 
@@ -164,7 +158,7 @@ public class PacManGame {
 
     // Displays text "You lost :(" and final score
     private void YouLost() {
-        String string = "You Lost :(          Total Score: ".concat(String.valueOf(game.getPoints()));
+        String string = "Game Over :(          Final Score: ".concat(String.valueOf(game.getPoints()));
         JLabel label = new JLabel(string, SwingConstants.CENTER);
         frame.getContentPane().add(label);
 

@@ -14,10 +14,10 @@ public class Blinky extends GhostAbstract {
     public static final Point initialPos = new Point(50,50);
     public static final int speed = 4;
 
-    public static final ImageIcon BLINKY_EAST = new ImageIcon("Images/Blinky Images/BlinkyEAST.png");
-    public static final ImageIcon BLINKY_SOUTH = new ImageIcon("Images/Blinky Images/BlinkySOUTH.png");
-    public static final ImageIcon BLINKY_WEST = new ImageIcon("Images/Blinky Images/BlinkyWEST.png");
-    public static final ImageIcon BLINKY_NORTH = new ImageIcon("Images/Blinky Images/BlinkyNORTH.png");
+    public static final ImageIcon BLINKY_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Blinky Images/BlinkyEAST.png");
+    public static final ImageIcon BLINKY_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Blinky Images/BlinkySOUTH.png");
+    public static final ImageIcon BLINKY_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Blinky Images/BlinkyWEST.png");
+    public static final ImageIcon BLINKY_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Blinky Images/BlinkyNORTH.png");
 
     public final ImageIcon[] images = {BLINKY_EAST, BLINKY_SOUTH, BLINKY_WEST, BLINKY_NORTH};
 

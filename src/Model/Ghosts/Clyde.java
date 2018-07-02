@@ -14,10 +14,10 @@ public class Clyde extends GhostAbstract {
     public static final Point scatter_point = new Point(10, 300);
     private boolean is_scatter = false;
 
-    public static final ImageIcon CLYDE_EAST = new ImageIcon("Images/Clyde Images/ClydeEAST.png");
-    public static final ImageIcon CLYDE_SOUTH = new ImageIcon("Images/Clyde Images/ClydeSOUTH.png");
-    public static final ImageIcon CLYDE_WEST = new ImageIcon("Images/Clyde Images/ClydeWEST.png");
-    public static final ImageIcon CLYDE_NORTH = new ImageIcon("Images/Clyde Images/ClydeNORTH.png");
+    public static final ImageIcon CLYDE_EAST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeEAST.png");
+    public static final ImageIcon CLYDE_SOUTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeSOUTH.png");
+    public static final ImageIcon CLYDE_WEST = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeWEST.png");
+    public static final ImageIcon CLYDE_NORTH = new ImageIcon("src/Model/Ghosts/Ghost_Images/Clyde Images/ClydeNORTH.png");
 
     public final ImageIcon[] images = {CLYDE_EAST, CLYDE_SOUTH, CLYDE_WEST, CLYDE_NORTH};
 
@@ -34,7 +34,7 @@ public class Clyde extends GhostAbstract {
         Point pos = getPos();
         Point pacman_pos = PacMan.getInstance().getPos();
 
-        if (Distance.getDistance(pos, pacman_pos) <= 200)
+        if (Distance.getDistance(pos, pacman_pos) <= 250)
             is_scatter = true;
 
         if ((pos.x <= scatter_point.x + 5 && pos.x >= scatter_point.x - 5) &&

@@ -11,7 +11,7 @@ import static Util.Direction.*;
  * Abstract ghost class to implement our observer design pattern
  */
 public abstract class GhostAbstract extends MoveableSprite{
-    private Point initialPos;
+    private final Point initialPos;
 
     // GhostAbstract Constructor
     // Note that the value of initialPos is set to the first value that we set for pos
@@ -47,7 +47,7 @@ public abstract class GhostAbstract extends MoveableSprite{
 
         else {                      // Else slope is defined
             double slope = -((double) (target.y - getPos().y))/((double) (target.x - getPos().x)); // Note that slope is made neg
-                                                                                         // since y increases downwards
+                                                                                                   // since y increases downwards
             if (target.x < getPos().x) {     // If target pos is to the LEFT of current POS
                 if (slope > 1)              // If target pos is below the 45 deg line
                     setDir(SOUTH);

@@ -42,6 +42,16 @@ public class PacManTest {
 
     @Test
     public void testSetDir() {
+        pacMan.setDir(Direction.EAST);
+        assertEquals(PacMan.PM_EAST, pacMan.getImage());
 
+        pacMan.setDir(Direction.SOUTH);
+        assertEquals(PacMan.PM_SOUTH, pacMan.getImage());
+
+        pacMan.setDir(Direction.WEST);
+        assertEquals(PacMan.PM_WEST, pacMan.getImage());
+
+        pacMan.setDir(Direction.NORTH);
+        assertEquals(PacMan.PM_NORTH, pacMan.getImage());
     }
 }

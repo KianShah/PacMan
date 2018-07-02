@@ -2,22 +2,26 @@ package Model;
 
 import UI.PacManGame;
 import Util.Direction;
+import Util.ImageBuffer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Represents a PacMan object
  * Implemented with Singleton design pattern
  */
 public class PacMan extends MoveableSprite{
-    public static Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
+    public static final Point initialPos = new Point(PacManGame.FRAME_WIDTH/2, PacManGame.FRAME_HEIGHT/2);
     private static int speed = 7;
 
-    public static final ImageIcon PM_EAST = new ImageIcon("Images/PacMan Images/PacManEAST.png");
-    public static final ImageIcon PM_SOUTH = new ImageIcon("Images/PacMan Images/PacManSOUTH.png");
-    public static final ImageIcon PM_WEST = new ImageIcon("Images/PacMan Images/PacManWEST.png");
-    public static final ImageIcon PM_NORTH = new ImageIcon("Images/PacMan Images/PacManNORTH.png");
+    public static final ImageIcon PM_EAST = ImageBuffer.getImage("/Model/PacMan Images/PacManEAST.png", PacMan.class);
+    public static final ImageIcon PM_SOUTH = ImageBuffer.getImage("/Model/PacMan Images/PacManSOUTH.png", PacMan.class);
+    public static final ImageIcon PM_WEST = ImageBuffer.getImage("/Model/PacMan Images/PacManWEST.png", PacMan.class);
+    public static final ImageIcon PM_NORTH = ImageBuffer.getImage("/Model/PacMan Images/PacManNORTH.png", PacMan.class);
 
     public static final ImageIcon[] images = new ImageIcon[] {PM_EAST, PM_SOUTH, PM_WEST, PM_NORTH};
 
@@ -46,5 +50,18 @@ public class PacMan extends MoveableSprite{
     @Override
     public ImageIcon[] getImages() {
         return images;
+    }
+
+    private static ImageIcon getImage(String filename) {
+        try {
+            URL url = PacMan.class.getResource(filename);
+            Image image = ImageIO.read(url);
+            return new ImageIcon(image);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
