@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\K\IdeaProjects\PacMan\out\artifacts\PacMan_jar\PacMan.jar</jar>
+  <outfile>C:\Users\K\IdeaProjects\PacMan\PacMan.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\K\Downloads\PacManEAST.ico</icon>
+  <singleInstance>
+    <mutexName>PacMan</mutexName>
+    <windowTitle></windowTitle>
+  </singleInstance>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.0.1</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0.0.0</txtFileVersion>
+    <fileDescription>PacMan</fileDescription>
+    <copyright>Kian Shahangyan 2018</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>Alpha</txtProductVersion>
+    <productName>PacMan Redesigned</productName>
+    <companyName></companyName>
+    <internalName>PacMan</internalName>
+    <originalFilename>PacMan.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+</launch4jConfig>
