@@ -1,4 +1,4 @@
-This is a PacMan project started in May 2018. While the design and images are taken from the original PacMan game, which is currently copyrighted by Nintendo, the gameplay mechanics are far different. The objective of the game is to gather all of the stars before the ghosts get to you.
+This is a PacMan project written in Java in May 2018. While the design and images are taken from the original PacMan game, which is currently copyrighted by Nintendo, the gameplay mechanics are far different. The objective of the game is to gather all of the stars before the ghosts get to you.
 
 The source code is written using Java, and GUI built with the JFrame package.
 
